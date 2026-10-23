@@ -1,0 +1,86 @@
+{%extends 'base.html'%} {% block content %}
+
+<h1 style="padding-left: 30px">
+  Welcome to dashboard - CRM <b>{{ user }}!</b>
+</h1>
+
+<hr style="border: 1px solid #000; margin: 30px 30px" />
+
+<div style="padding-left: 30px">
+  <a href="{% url 'createrecord' %}" class="btn btn-outline-primary">
+    Create Record <i class="fa fa-plus"></i
+  ></a>
+</div>
+
+<hr style="border: 1px solid #000; margin: 30px 30px" />
+{% include 'parts/alrtes.html' %}
+<div class="text-center" style="margin: 0px 40px">
+  <form action="{% url 'search-records' %}" method="GET">
+    <input
+      type="search"
+      name="query"
+      placeholder="Search records..."
+      class="form-control mr-sm-2"
+    />
+    &nbsp;
+
+    <button
+      type="submit"
+      class="btn btn-outline-dark w-100 btn-block p-2"
+      style="border-radius: 100px"
+    >
+      Search
+    </button>
+  </form>
+  <hr style="border: 1px solid #000; margin: 30px 40px" />
+</div>
+
+<div class="text-center">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Category</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if record %} {% for record in record %}
+      <tr>
+        <td>{{ record.id }}</td>
+        <td>{{ record.first_name }}</td>
+        <td>{{ record.last_name }}</td>
+        <td>{{ record.phone }}</td>
+        <td>{{ record.address }}</td>
+        <td>{{ record.category }}</td>
+        <td>{{ record.email }}</td>
+        <td>{{ record.status }}</td>
+        <td>{{ record.created_at }}</td>
+        <td>
+          <a
+            href="{% url 'viewrecord' record.id %}"
+            class="btn btn-outline-primary btn-sm"
+            >View</a
+          >
+        </td>
+      </tr>
+      {% endfor %} {% else %}
+      <tr>
+        <td colspan="10" class="text-center">
+          <br /><br />
+          <div class="alert alert-dark" role="alert">No records found.</div>
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% include 'parts/alrtes.html' %}
+<div class="container bg-light shadow-md p-5 form.layout">
+    <h1>Login </h1>
+
+    <hr>
+
+    <form method="POST"  autocomplete="off">
+
+        {% csrf_token %}
+
+        {{ form|crispy }}
+
+        <br>
+
+        <button type="submit" class="btn btn-outline-primary">Login <i class="fa fa-key"></i></button>
+    </form>
+</div> 
+{%endblock%}

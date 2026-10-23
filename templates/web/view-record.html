@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2 class="text-center" style="margin: 30px 80px">
+  <i class="fa fa-user"></i> {{ record.first_name }} {{ record.last_name }}
+</h2>
+
+<hr style="border: 1px solid #000; margin: 30px 100px" />
+
+<div class="container bg-light shadow-md p-5 form-layout">
+  <h1>View Record</h1>
+  <p><strong>ID:</strong> {{ record.id }}</p>
+  <p>
+    <strong>Full Name:</strong> {{ record.first_name }} {{ record.last_name }}
+  </p>
+  <p><strong>Phone:</strong> {{ record.phone }}</p>
+  <p><strong>Category:</strong> {{ record.category }}</p>
+  <p><strong>Address:</strong> {{ record.address }}</p>
+  <p><strong>Email:</strong> {{ record.email }}</p>
+  <p><strong>Status:</strong> {{ record.get_status_display }}</p>
+  <p><strong>Notes:</strong> {{ record.notes|linebreaksbr }}</p>
+  <p><strong>Creation Date:</strong> {{ record.created_at }}</p>
+
+  <br />
+  <a href="{% url 'updaterecord' record.id %}" class="btn btn-outline-primary"
+    >Update Record <i class="fa fa-wrench"></i
+  ></a>
+
+  <form
+    method="post"
+    action="{% url 'deleterecord' record.id %}"
+    onsubmit="return confirm('Are you sure you want to delete this record?');"
+    style="display: inline"
+  >
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">
+      Delete Record <i class="fa fa-trash"></i>
+    </button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+
+
+{% block content %}
+  
+
+<div class="text-center">
+<br><br><br>
+<h1>Django - CRM ... Management </h1>
+<br>
+<h5><b>Keep track of your records effectivley!</b></h5>
+<hr style="border: 1px solid #000 ; margin: 30px 180px;">
+
+{% if user.is_authenticated %}
+<a href="{% url 'dashboard' %}" class="btn btn-outline-primary">My Dashboard</a>
+{% else %}
+<a href="{% url 'register' %}" class="btn btn-outline-primary">Register</a>
+{% endif %}
+
+
+</div>
+{% endblock %}
+

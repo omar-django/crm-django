@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django CRM</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+      /* خطوط بين الأعمدة والصفوف */
+      .table th,
+      .table td {
+        border: 1px solid #dee2e6 !important;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      /* تنسيق عناوين الجدول */
+      .table thead th {
+        background-color: #212529;
+        color: white;
+      }
+
+      /* تأثير عند الوقوف على الصف */
+      .table tbody tr:hover {
+        background-color: #f2f2f2;
+
+        body {
+          min-height: 100vh;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include 'parts/navbar.html' %} {% block content %} {% endblock %}
+  </body>
+</html>

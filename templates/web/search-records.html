@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Category</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if results %} 
+      {% for record in results %}
+      <tr>
+        <td>{{ record.id }}</td>
+        <td>{{ record.first_name }}</td>
+        <td>{{ record.last_name }}</td>
+        <td>{{ record.phone }}</td>
+        <td>{{ record.address }}</td>
+        <td>{{ record.category }}</td>
+        <td>{{ record.email }}</td>
+        <td>{{ record.status }}</td>
+        <td>{{ record.created_at }}</td>
+        <td>
+          <a
+            href="{% url 'viewrecord' record.id %}"
+            class="btn btn-outline-primary btn-sm"
+            >View</a
+          >
+        </td>
+      </tr>
+      {% endfor %} {% else %}
+      <tr>
+        <td colspan="10" class="text-center">
+          <br /><br />
+          <div class="alert alert-dark" role="alert">
+          Not Found {{query}}.  
+          </div>
+                 </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
